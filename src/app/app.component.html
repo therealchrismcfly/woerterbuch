@@ -4,21 +4,18 @@
 </h1>
 <div class="wrapper">
   <div class="polnisch">
-    <label for="addItemInput"></label>
     <input
       #newPolnischesWort
       placeholder="Polnisch"
-      (keyup.enter)="addPolnisch(newPolnischesWort.value); newPolnischesWort.value = ''"
       class="polnisch-input"
       id="addItemPolnisch"
     />
-    <button class="add-button" (click)="addPolnisch(newPolnischesWort.value)">
-      +
-    </button>
+
     <h2>Polnisch</h2>
     <ul>
-      <li class="list" *ngFor="let wortPolnisch of woerterPolnisch">
-        {{wortPolnisch.polnisch}}
+      <li class="list" *ngFor="let translationEntry of myDictionary">
+        {{translationEntry.polnisch}}
+        <button class="add-button" (click)="removeTranslationEntry(translationEntry)">-</button>
       </li>
     </ul>
   </div>
@@ -27,18 +24,17 @@
     <input
       #newDeutschesWort
       placeholder="Deutsch"
-      (keyup.enter)="addDeutsch(newDeutschesWort.value); newDeutschesWort.value = ''"
       class="deutsch-input"
       id="addItemDeutsch"
     />
-    <button class="add-button" (click)="addDeutsch(newDeutschesWort.value)">
+    <button class="add-button" (click)="addTranslationEntry(newDeutschesWort.value, newPolnischesWort.value)">
       +
     </button>
 
     <h2>Deutsch</h2>
     <ul>
-      <li class="list" *ngFor="let wortDeutsch of woerterDeutsch">
-        {{wortDeutsch.deutsch}}
+      <li class="list" *ngFor="let translationEntry of myDictionary">
+        {{translationEntry.deutsch}}
       </li>
     </ul>
   </div>

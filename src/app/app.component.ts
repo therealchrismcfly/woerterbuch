@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { LocalService } from './local.service';
 
 @Component({
   selector: "app-root",
@@ -6,42 +7,31 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  title = "shoppinglist";
+  constructor(private localStore: LocalService) {
+
+  }
+
+  ngOnInit(): void {
+this.myDictionary = this.localStore.getDictionary()
+  }
+
+  title = "woerterbuch";
 
   filter: "all" | "active" | "done" = "all";
 
-  Polnisch = [{ polnisch: "Dobranoc", done: true }];
-  Deutsch = [{ deutsch: "Gute Nacht", done: true }];
+  myDictionary: Array<TranslationEntry> = [{polnisch: "Dobranoc",deutsch: "Gute Nacht" }]
 
-  get woerterPolnisch() {
-    if (this.filter === "all") {
-      return this.Polnisch;
-    }
-    return this.Polnisch.filter((wortPolnisch) =>
-      this.filter === "done" ? wortPolnisch.done : !wortPolnisch.done
-    );
-  }
+removeTranslationEntry(translationEntry: TranslationEntry) {
+    this.myDictionary = this.myDictionary.filter(entry => entry !== translationEntry)
+   this.localStore.saveDictionary(this.myDictionary);
 
-  get woerterDeutsch() {
-    if (this.filter === "all") {
-      return this.Deutsch;
-    }
-    return this.Deutsch.filter((wortDeutsch) =>
-      this.filter === "done" ? wortDeutsch.done : !wortDeutsch.done
-    );
-  }
-
-  addPolnisch(polnisch: string) {
-    this.Polnisch.push({
-      polnisch,
-      done: false
-    });
-  }
-
-  addDeutsch(deutsch: string) {
-    this.Deutsch.push({
-      deutsch,
-      done: false
-    });
-  }
 }
+
+
+  addTranslationEntry(deutsch: string, polnisch: string) {
+    this.myDictionary.push({deutsch, polnisch})
+    this.localStore.saveDictionary(this.myDictionary);
+  }
+};
+
+export interface TranslationEntry {polnisch: string, deutsch: string}
