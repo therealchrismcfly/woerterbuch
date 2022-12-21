@@ -1,0 +1,48 @@
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin-top: 5px;
+}
+
+input {
+  margin-bottom: 20px;
+  height: 5px;
+  padding: 15px;
+  border: none;
+}
+
+h1 {
+  font-size: 26px;
+  text-decoration: underline #87E1BB 6px;
+  margin: 40px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+button {
+  width: 35px;
+  height: 35px;
+  border: none;
+  margin: 0 60px 0 20px;
+  border-radius: 50%;
+  border: none;
+  background-color: #87E1BB;
+  font-size: 22px;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  justify-content: center;
+  background-color: #F6D5D4;
+  border-radius: 25px;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  margin: 20px;
+}
