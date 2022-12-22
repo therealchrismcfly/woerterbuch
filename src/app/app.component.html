@@ -2,40 +2,37 @@
 <h1>
   Mein polnisches Wörterbuch
 </h1>
-<div class="wrapper">
-  <div class="polnisch">
+<table class="wrapper">
+  <tr>
+    <th>Polnisch</th>
+    <th>Deutsch</th>
+  </tr>
+    <tr class="list" *ngFor="let translationEntry of myDictionary">
+      <td >
+        {{translationEntry.polnisch}}
+      </td>
+      <td>{{translationEntry.deutsch}}</td>
+      <button class="add-button" (click)="removeTranslationEntry(translationEntry)">-</button>
+    </tr>
+  <tr>
+    <td>
     <input
       #newPolnischesWort
       placeholder="Polnisch"
       class="polnisch-input"
       id="addItemPolnisch"
     />
-
-    <h2>Polnisch</h2>
-    <ul>
-      <li class="list" *ngFor="let translationEntry of myDictionary">
-        {{translationEntry.polnisch}}
-        <button class="add-button" (click)="removeTranslationEntry(translationEntry)">-</button>
-      </li>
-    </ul>
-  </div>
-
-  <div class="deutsch">
+    </td>
+      <td>
     <input
       #newDeutschesWort
       placeholder="Deutsch"
       class="deutsch-input"
       id="addItemDeutsch"
     />
+    </td>
     <button class="add-button" (click)="addTranslationEntry(newDeutschesWort.value, newPolnischesWort.value)">
       +
     </button>
-
-    <h2>Deutsch</h2>
-    <ul>
-      <li class="list" *ngFor="let translationEntry of myDictionary">
-        {{translationEntry.deutsch}}
-      </li>
-    </ul>
-  </div>
-</div>
+  </tr>
+</table>
